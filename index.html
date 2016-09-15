@@ -1,0 +1,120 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="vocApp" manifest="vocapp.appcache">
+<head>
+    <title>Vocabulary</title>
+
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous" />-->
+    <link rel="stylesheet" href="Css/bootstrap.css" />
+
+    <link rel="stylesheet" href="Css/ak.css" />
+
+    <!--Angular stuff-->
+    <script src="Scripts/angular.js"></script>
+
+    <!--Main code App-->
+    <script src="app/appBootAngular.js"></script>
+
+    <script src="app/Services/wordsService.js"></script>
+
+    <script src="app/Controllers/mainController.js"></script>
+
+    <script src="app/filters.js"></script>
+
+
+</head>
+<body ng-controller="mainController">
+    <div class="panel panel-info" ng-show="screenNo==1">
+        <div class="panel-heading">
+            <h3>Vocabulary</h3>
+        </div>
+        <div class="panel-body">
+            <form role="form">
+                <div class="form-group">
+                    <label for="nbSkip">Nb to skip:</label>
+                    <input type="number" class="form-control input-lg" id="nbSkip" placeholder="Enter nb words to skip" ng-model="nbSkip">
+                    <button ng-click="nbSkip=0" class="btn btn-primary btn-lg">0</button>
+                    <button ng-click="nbSkip=500" class="btn btn-primary btn-lg">500</button>
+                    <button ng-click="nbSkip=1000" class="btn btn-primary btn-lg">1000</button>
+                    <button ng-click="nbSkip=nbSkip+10" class="btn btn-info btn-lg">+10</button>
+                    <button ng-click="nbSkip=nbSkip-10" class="btn btn-info btn-lg">-10</button>
+                    <button ng-click="nbSkip=nbSkip+20" class="btn btn-info btn-lg">+20</button>
+                    <button ng-click="nbSkip=nbSkip-20" class="btn btn-info btn-lg">-20</button>
+                    <button ng-click="nbSkip=nbSkip+50" class="btn btn-info btn-lg">+50</button>
+                    <button ng-click="nbSkip=nbSkip-50" class="btn btn-info btn-lg">-50</button>
+                </div>
+                <div class="form-group">
+                    <label for="nbTake">Nb to take:</label>
+                    <input type="number" class="form-control input-lg" id="nbTake" placeholder="Enter nb words to take" ng-model="nbTake">
+                    <button ng-click="nbTake=20" class="btn btn-success btn-lg">20</button>
+                    <button ng-click="nbTake=30" class="btn btn-success btn-lg">30</button>
+                    <button ng-click="nbTake=40" class="btn btn-info btn-lg">40</button>
+                    <button ng-click="nbTake=50" class="btn btn-info btn-lg">50</button>
+                    <button ng-click="nbTake=75" class="btn btn-info btn-lg">75</button>
+                    <button ng-click="nbTake=100" class="btn btn-info btn-lg">100</button>
+                    <button ng-click="nbTake=200" class="btn btn-warning btn-lg">200</button>
+                    <button ng-click="nbTake=500" class="btn btn-warning btn-lg">500</button>
+                    <button ng-click="nbTake=1000" class="btn btn-danger btn-lg">1000</button>
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" ng-model="inverseTest">Reverse test</label>
+                </div>
+                <div class="row voffset3">
+                    <div class="col-md-6 col-sm-6">
+                        <button ng-click="startTest(nbSkip, nbTake)" class="btn btn-success btn-lg btn-block">Start test</button>
+                    </div>
+                    <div class="col-md-6 col-sm-6">
+                        <button ng-show="nbWordsNow > 0" ng-click="continueTest()" class="btn btn-warning btn-lg btn-block">Continue test</button>
+                    </div>
+                </div>
+                
+            </form>
+        </div>
+    </div>
+
+    <div class="panel panel-success" ng-show="screenNo==2">
+        <div class="panel-heading">
+            <h3>Vocabulary test {{nbWordsNow}} / {{nbWordsInitial}}</h3>
+        </div>
+        <div class="panel-body">
+            <form role="form">
+                <div class="form-group">
+                    <label for="language1">Word:</label>
+                    <input type="text" class="form-control input-lg" id="language1" ng-model="question" disabled="">
+                </div>
+                <div class="form-group">
+                    <label for="language2">Translation:</label>
+                    <input type="text" class="form-control input-lg" id="language2" ng-model="solutionWord" disabled="">
+                </div>
+                <div class="row voffset3">
+                    <div class="col-md-6 col-sm-6">
+                        <button ng-click="undo()" class="btn btn-warning btn-block btn-lg">Undo</button>
+                    </div>
+                    <div class="col-md-6 col-sm-6">
+                        <button ng-click="screenNo=1" class="btn btn-primary btn-block btn-lg">End test</button>
+                    </div>
+                </div>
+                <div class="row voffset3">
+                    <div class="col-md-6 col-sm-6">
+                        <button ng-click="solutionWord= answer" class="btn btn-info btn-block btn-lg">Show translation</button>
+                    </div>
+                    <div class="col-md-6 col-sm-6">
+                        <button ng-click="" class="btn btn-info btn-block btn-lg">Find</button>
+                    </div>
+                </div>
+                <div class="row voffset3">
+                    <div class="col-md-6 col-sm-6">
+                        <button ng-click="nextInTest()" class="btn btn-danger btn-block btn-lg">Next word</button>
+                    </div>
+                    <div class="col-md-6 col-sm-6">
+                        <button ng-click="dontAskAgain()" class="btn btn-success btn-block btn-lg">Don't ask again</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+
+</body>
+</html>

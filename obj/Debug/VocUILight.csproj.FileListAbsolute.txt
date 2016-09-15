@@ -1,0 +1,5 @@
+c:\users\akvasz\documents\visual studio 2012\Projects\VocUILight\VocUILight\bin\VocUILight.dll
+c:\users\akvasz\documents\visual studio 2012\Projects\VocUILight\VocUILight\bin\VocUILight.pdb
+c:\users\akvasz\documents\visual studio 2012\Projects\VocUILight\VocUILight\obj\Debug\VocUILight.csprojResolveAssemblyReference.cache
+c:\users\akvasz\documents\visual studio 2012\Projects\VocUILight\VocUILight\obj\Debug\VocUILight.dll
+c:\users\akvasz\documents\visual studio 2012\Projects\VocUILight\VocUILight\obj\Debug\VocUILight.pdb
